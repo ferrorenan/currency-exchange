@@ -1,0 +1,27 @@
+.form {
+
+  &-floating {
+
+    margin-bottom: 2rem;
+
+    > .form-control {
+
+      border-bottom: 2px solid $gray-400;
+
+      &:focus, &:not(:placeholder-shown) {
+
+        border-bottom: 2px solid $primary;
+
+        &  ~ label {
+          color: $primary;
+          font-size: .75rem;
+        }
+      }
+    }
+
+    input {
+
+      text-transform: uppercase;
+    }
+  }
+}
