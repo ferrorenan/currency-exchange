@@ -1,0 +1,44 @@
+@import "bootstrap/scss/mixins/banner";
+@import "bootstrap/scss/functions";
+@import "src/resources/sass/frontend/fonts";
+
+// Tokens
+@import "src/resources/sass/tokens/theme-tokens";
+
+// Frontend Variables
+@import "src/resources/sass/frontend/variables";
+
+// scss-docs-start import-stack
+// Configuration
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// Layout & components
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/forms";
+
+// Helpers
+@import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
+// scss-docs-end import-stack
+
+// Structure
+@import "sass/frontend/structure";
+
+@import "sass/frontend/typography";
+@import "sass/components/form";
+@import "sass/components/button";
