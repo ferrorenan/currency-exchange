@@ -1,0 +1,22 @@
+<div class="hstack align-items-center card-exchange-item">
+  <span class="me-0h text-uppercase d-block">
+    {{ title }}:
+  </span>
+  <ng-container *ngIf="itemIsMoneyValue; else closeDiffTemplate">
+    <span class="fs-6 fw-semibold">
+    {{ value | currency:'BRL':'R$ ':'1.2-2' }}
+  </span>
+  </ng-container>
+  <ng-template #closeDiffTemplate>
+    <span class="fs-6"
+          [ngClass]="value >=0 ? 'text-success' : 'text-danger'">
+      {{ value >=0 ? '+' : '-' }} {{ String(value).slice(0, 4) }}%
+         <img [ngSrc]="value >= 0 ? 'assets/svg/ic-arrow-up.svg' : 'assets/svg/ic-arrow-down.svg'"
+              class="img-fluid"
+              alt="Ilustração de uma seta"
+              loading="lazy"
+              width="24"
+              height="24">
+    </span>
+  </ng-template>
+</div>
