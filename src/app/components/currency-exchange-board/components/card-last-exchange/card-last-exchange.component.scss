@@ -1,0 +1,16 @@
+@import "frontend/breakpoints-dependency";
+@import "tokens/theme-tokens";
+
+.card-last-exchange {
+
+  @include media-breakpoint-up(lg) {
+
+    transition: all $transition ease-in-out;
+
+    &:hover {
+
+      transition: all $transition ease-in;
+      transform: scale(1.02);
+    }
+  }
+}

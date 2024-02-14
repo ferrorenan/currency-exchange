@@ -1,0 +1,20 @@
+<div class="p-1 card shadow card-last-exchange {{class}}">
+  <small class="mb-0h text-primary">
+    {{ this.exchangePayload.date | date: 'dd/MM/yyyy' }}
+  </small>
+  <div class="hstack justify-content-between">
+    <app-card-item-last-exchange title="open"
+                                 [value]="this.exchangePayload.open"></app-card-item-last-exchange>
+    <app-card-item-last-exchange title="hight"
+                                 [value]="this.exchangePayload.high"></app-card-item-last-exchange>
+  </div>
+  <div class="hstack justify-content-between">
+    <app-card-item-last-exchange title="close"
+                                 [value]="this.exchangePayload.close"></app-card-item-last-exchange>
+    <app-card-item-last-exchange title="low"
+                                 [value]="this.exchangePayload.low"></app-card-item-last-exchange>
+  </div>
+  <app-card-item-last-exchange title="close diff (%)"
+                               [itemIsMoneyValue]="false"
+                               [value]="this.exchangePayload.close"></app-card-item-last-exchange>
+</div>
