@@ -1,0 +1,45 @@
+<div>
+  <form action=""
+        [formGroup]="currencyExchangeFormulary"
+        (ngSubmit)="submitFormularyApi()">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="form-floating">
+          <input type="text"
+                 class="form-control"
+                 id="floatingInput"
+                 formControlName="coinIdentification"
+                 placeholder="Enter the currency code"
+                 [ngClass]="{'is-invalid': validateFormField(currencyExchangeFormulary,'coinIdentification')}">
+          <label for="floatingInput">Enter the currency code</label>
+          <ng-container *ngIf="(currencyExchangeFormulary.controls.coinIdentification) as coinIdentificationControl">
+            <small *ngIf="coinIdentificationControl.hasError('required')"
+                   class="invalid-feedback">
+              Precisamos da moeda para continuar :)
+            </small>
+            <small *ngIf="coinIdentificationControl.hasError('minlength')"
+                   class="invalid-feedback">
+              Precisamos de no mínimo 3 caracteres :)
+            </small>
+          </ng-container>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="d-grid">
+          <button class="mb-2 text-white btn btn-primary"
+                  title="Exchange Result"
+                  aria-label="Exchange Result"
+                  [ngClass]="currencyExchangeFormulary.invalid ? 'disabled' : ''">
+            Exchange Result
+          </button>
+        </div>
+      </div>
+      <div class="col-12">
+        <app-card-exchange-rate-now [exchangeRateNowPayload$]="exchangeRateNowPayload$"></app-card-exchange-rate-now>
+      </div>
+      <div class="col-12">
+        <app-collapse-last-days-exchange [lastDaysPayload]="latestDailyExchangeRatePayload$"></app-collapse-last-days-exchange>
+      </div>
+    </div>
+  </form>
+</div>
