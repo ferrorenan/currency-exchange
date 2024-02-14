@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {map, Observable, retry, switchMap} from "rxjs";
 import {ExchangeRateNowResponse} from "../models/exchange-rate-now-response";
 import {LatestDailyExchangeResponse} from "../models/latest-daily-exchange-response";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class ExchangeService {
@@ -18,7 +19,7 @@ export class ExchangeService {
   getCurrentExchangeRate(from: string): Observable<ExchangeRateNowResponse> {
 
     return this._httpClient
-      .get<ExchangeRateNowResponse>(`currentExchangeRate?apiKey=RVZG0GHEV2KORLNA&from_symbol=${from}&to_symbol=BRL`)
+      .get<ExchangeRateNowResponse>(`currentExchangeRate?apiKey=${environment.apiKey}&from_symbol=${from}&to_symbol=BRL`)
       .pipe(
         retry(1)
       );
@@ -31,7 +32,7 @@ export class ExchangeService {
   getLastDaysExchangeRate(from: string): Observable<LatestDailyExchangeResponse> {
 
     return this._httpClient
-      .get<LatestDailyExchangeResponse>(`dailyExchangeRate?apiKey=RVZG0GHEV2KORLNA&from_symbol=${from}&to_symbol=BRL`)
+      .get<LatestDailyExchangeResponse>(`dailyExchangeRate?apiKey=${environment.apiKey}&from_symbol=${from}&to_symbol=BRL`)
       .pipe(
         retry(1)
       );
