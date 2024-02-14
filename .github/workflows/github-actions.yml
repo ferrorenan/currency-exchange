@@ -1,0 +1,21 @@
+name: Merge Develop branch to Main
+on:
+  push:
+    branches:
+      - 'develop'
+jobs:
+
+  merge-develop-to-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
+      - run: echo "✅ Starting process to merge Develop into Main on the ${{ github.repository }}."
+      - name: Merge develop -> main
+        run: |
+          git fetch --unshallow
+          git checkout main
+          git pull
+          git merge develop -m "Github Actions - Auto-merge Develop to Main"
+          git push
+      - run: echo "⚠️ This job's status is ${{ job.status }}."
