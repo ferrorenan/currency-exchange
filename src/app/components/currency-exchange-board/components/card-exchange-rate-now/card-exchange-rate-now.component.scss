@@ -1,0 +1,19 @@
+@import "tokens/theme-tokens";
+
+.rate-card {
+
+  padding: 1.87rem 0;
+  border-top: 1px solid $gray-300;
+
+  &-date {
+
+    color: $gray-700;
+  }
+
+  &-price {
+
+    background-color: lighten($primary, 45%);
+    font-size: 2rem;
+    text-align: center;
+  }
+}
