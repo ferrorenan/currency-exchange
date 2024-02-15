@@ -1,10 +1,8 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
-import {ExchangeService} from "../../services/exchange.service";
 import {CurrencyExchangeForm} from "../../models/currency-exchange-form";
-import {Observable} from "rxjs";
-import {ExchangeRateNowResponse} from "../../models/exchange-rate-now-response";
-import {LatestDailyExchangeResponse} from "../../models/latest-daily-exchange-response";
+import {Store} from "@ngxs/store";
+import {ExchangeRateActions} from "../../store/actions/exchange-rate.actions";
 
 @Component({
   selector: 'app-currency-exchange-board',
@@ -23,13 +21,9 @@ export class CurrencyExchangeBoardComponent {
       }),
   });
 
-  exchangeRateNowPayload$: Observable<ExchangeRateNowResponse>;
-  latestDailyExchangeRatePayload$: Observable<LatestDailyExchangeResponse>
-
-  private readonly _currencyExchangeService: ExchangeService = inject(ExchangeService);
-
   constructor(
     private _formBuilder: NonNullableFormBuilder,
+    private _store: Store
   ) {}
 
   protected validateFormField(formGroupContact: FormGroup, field: string): boolean {
@@ -49,15 +43,7 @@ export class CurrencyExchangeBoardComponent {
       return;
     }
 
-    this.exchangeRateNowPayload$ = this._currencyExchangeService
-      .getCurrentExchangeRate(coinToSearchIdentification);
-
-    this.getLatestDailyExchangeRatePayload(coinToSearchIdentification);
-  }
-
-  protected getLatestDailyExchangeRatePayload(coinToSearchIdentification: string): void {
-
-    this.latestDailyExchangeRatePayload$ = this._currencyExchangeService
-      .getLastDaysExchangeRate(coinToSearchIdentification);
+    this._store.dispatch(new ExchangeRateActions.GetCurrentExchangeRate(coinToSearchIdentification));
+    this._store.dispatch(new ExchangeRateActions.GetLastDaysExchangeRate(coinToSearchIdentification));
   }
 }
