@@ -1,0 +1,31 @@
+@import "sweetalert2/src/sweetalert2";
+
+.swal2 {
+
+  &-title {
+
+    color: $primary !important;
+    margin-bottom: 1rem !important;
+    font-size: 1.5rem !important;
+    position: relative;
+  }
+
+  &-modal {
+
+    border-radius: 25px !important;
+  }
+
+  &-html-container {
+
+    font-size: .825rem !important;
+    margin-top: unset !important;
+    line-height: 160% !important;
+    margin-bottom: 1.5rem;
+  }
+
+  &-backdrop-show {
+
+    background: rgba(0, 0, 0, 0.6) !important;
+  }
+}
+
