@@ -8,6 +8,17 @@ import {DailyExchangeItemResponse} from "../../../../models/daily-exchange-item-
 })
 export class CardLastExchangeComponent {
 
-  @Input({required: true}) exchangePayload: DailyExchangeItemResponse;
+  @Input({required: true}) lastExchangePayload: DailyExchangeItemResponse;
+  @Input({required: true}) previouslyCloseDiffValue: number;
   @Input() class: string;
+
+  /**
+   *
+   * @param {number} currentCloseDiff Parâmetro de valor do "close" atual
+   * Calcula diferença entre closeValue atual e closeValue do dia anterior
+   */
+  calculateCloseDiff(currentCloseDiff: number): number {
+
+    return ((currentCloseDiff / this.previouslyCloseDiffValue) - 1) * 100;
+  }
 }
