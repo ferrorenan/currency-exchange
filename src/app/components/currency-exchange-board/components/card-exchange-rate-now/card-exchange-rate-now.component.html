@@ -1,20 +1,34 @@
-<ng-container *ngIf="(exchangeRateNowPayload$ | async) as exchangeRateNowPayload;">
-  <div class="rate-card">
-    <div class="mb-1 hstack align-items-center justify-content-between">
-      <div>
-        <h2 class="mb-0 text-dark fw-semibold">
-          Exchange rate now
-        </h2>
-        <small class="rate-card-date">
-          {{this.exchangeRateNowPayload.lastUpdatedAt | date: "dd/MM/yyyy '-' 'HH:mm"}}
-        </small>
-      </div>
-      <span class="mb-0 h1">
-          {{ exchangeRateNowPayload.fromSymbol }}/{{ exchangeRateNowPayload.toSymbol }}
+<ng-container *ngIf="(exchangeRateNowPayload1$ | async) as exchangeRateNowPayload;">
+  <ng-container *ngIf="exchangeRateNowPayload.success; else feedbackClientTemplate">
+    <div class="rate-card">
+      <div class="mb-1 hstack align-items-center justify-content-between">
+        <div>
+          <h2 class="mb-0 text-dark fw-semibold">
+            Exchange rate now
+          </h2>
+          <small class="rate-card-date">
+            {{this.exchangeRateNowPayload.lastUpdatedAt | date: "dd/MM/yyyy '-' 'HH:mm"}}
+          </small>
+        </div>
+        <span class="mb-0 h1">
+          {{ exchangeRateNowPayload.fromSymbol.toUpperCase() }}/{{ exchangeRateNowPayload.toSymbol }}
         </span>
+      </div>
+      <div class="py-1 fw-bold text-primary rate-card-price">
+        {{ exchangeRateNowPayload.exchangeRate | currency:'BRL':'R$ ':'1.2-2' }}
+      </div>
     </div>
-    <div class="py-1 fw-bold text-primary rate-card-price">
-      {{ exchangeRateNowPayload.exchangeRate | currency:'BRL':'R$ ':'1.2-2' }}
-    </div>
-  </div>
+  </ng-container>
+  <ng-template #feedbackClientTemplate>
+    <ng-container *ngIf="(hasError$ | async);">
+      <div class="alert alert-danger"
+           role="alert">
+        Ops, estamos com algumas instabilidades.
+        <span class="fw-bold">
+          Por favor, tente novamente!
+        </span>
+      </div>
+    </ng-container>
+  </ng-template>
 </ng-container>
+

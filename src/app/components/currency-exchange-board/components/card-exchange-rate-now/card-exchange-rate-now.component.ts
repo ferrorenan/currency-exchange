@@ -1,8 +1,10 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Observable} from "rxjs";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import {ExchangeRateNowResponse} from "../../../../models/exchange-rate-now-response";
+import {Select} from "@ngxs/store";
+import {CurrentExchangeStates} from "../../../../store/state/current-exchange-rate.state";
 
 @Component({
   selector: 'app-card-exchange-rate-now',
@@ -13,6 +15,6 @@ import {ExchangeRateNowResponse} from "../../../../models/exchange-rate-now-resp
 })
 export class CardExchangeRateNowComponent {
 
-  @Input({required: true}) exchangeRateNowPayload$: Observable<ExchangeRateNowResponse>;
-
+  @Select(CurrentExchangeStates.getCurrentExchangeRate) exchangeRateNowPayload1$: Observable<ExchangeRateNowResponse>;
+  @Select(CurrentExchangeStates.hasError) hasError$: Observable<boolean>;
 }
