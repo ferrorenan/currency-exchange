@@ -1,0 +1,27 @@
+.accordion {
+
+  &-item {
+
+    border-bottom: 2px solid $primary;
+  }
+
+  &-body {
+
+    background-color: $light;
+  }
+
+  &-button {
+
+    font-weight: 600;
+    color: $gray-900;
+
+    &:not(.collapsed) {
+      color: $gray-900;
+    }
+
+    &:focus {
+
+      box-shadow: unset;
+    }
+  }
+}
