@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, Observable, retry, switchMap} from "rxjs";
+import {catchError, Observable, retry} from "rxjs";
 import {ExchangeRateNowResponse} from "../models/exchange-rate-now-response";
 import {LatestDailyExchangeResponse} from "../models/latest-daily-exchange-response";
 import {environment} from "../../environments/environment";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ExchangeService {
 
   constructor(
