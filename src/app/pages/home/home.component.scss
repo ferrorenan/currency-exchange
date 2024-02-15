@@ -1,0 +1,11 @@
+@import "frontend/breakpoints-dependency";
+
+.homepage {
+
+  min-height: 84dvh;
+
+  @include media-breakpoint-up(lg){
+
+    min-height: 86dvh;
+  }
+}
